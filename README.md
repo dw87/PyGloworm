@@ -49,12 +49,15 @@ This is a problem when these Python scripts are run by a web server.  When the w
 it will fail when it reaches the I2C interaction, as it does not have the correct permissions.  
 
 To fix this, add a new user to the i2c group: 
+    
     sudo adduser pi i2c
 
 Also, create or edit the file /etc/udev/rules.d/99-i2c.rules and add the line: 
+    
     SUBSYSTEM=="i2c-dev", MODE="0666"
 
 When finished, reboot your Raspberry Pi.  
+    
     sudo reboot
 
 ### Static IP
@@ -71,8 +74,10 @@ A typical configuration is shown below:
     sudo nano /etc/network/interfaces
 
 Change
+
     iface eth0 inet dhcp
 To
+
     iface eth0 inet static
     address 192.168.0.###
     netmask 255.255.255.0
@@ -81,6 +86,7 @@ To
     gateway 192.168.0.1
 
 When finished, reboot your Raspberry Pi.  
+
     sudo reboot
 
 Then configure Port Forwarding on your router, to forward all incoming connections on Port 80 (HTTP traffic) to the static IP 
@@ -108,22 +114,22 @@ You will need to edit the Lighttpd config file to enable CGI and allow it to rec
 
     sudo nano /etc/lighttpd/lighttpd.conf
 
-Edit the server.modules section to include or uncomment "mod_cgi".  
+Edit the server.modules section to include or uncomment "mod_cgi": 
 
-server.modules = (
+    server.modules = (
 	"mod_access",
 	"mod_alias",
 	"mod_compress",
 	"mod_redirect",
 	"mod_cgi",
 	#"mod_rewrite",
-)
+    )
 
 At the end of the file, add this section so Lighttpd will recognize Python scripts in the 'www' directory.  
 
-$HTTP["url"] =~ "^/" {
+    $HTTP["url"] =~ "^/" {
 	cgi.assign = (".py" => "/usr/bin/python")
-}
+    }
 
 Finally alter the permissions of the www directory (by default /var/www).
 
@@ -132,10 +138,12 @@ Finally alter the permissions of the www directory (by default /var/www).
     sudo usermod -a -G www-data pi
 
 When finished, restart the Lighttpd service.
+
     sudo service lighttpd restart
 
 See more information on configuration a Raspberry Pi web server at: 
 http://mike632t.wordpresss.com/2013/09/21/installing-lighttpd-with-python-cgi-support/
+
 http://raspberrypi-spy.co.uk/2013/06/how-to-setup-a-web-server-on-your-raspberry-pi/
 
 ## Installing Pygloworm
@@ -155,7 +163,7 @@ If this does not happen, download the debug file to your www directory and try t
 
     sudo wget https://raw.github.com/dw87/PyGloworm/master/pygloworm.py -P /var/www
 
-Browse to this page.  Your browser should display the word 'Done' in the <body> of the HTML
+Browse to this page.  Your browser should display the word 'Done' in the body of the HTML
 if this has worked correctly.  
 
 If it does not, please check ALL steps above and make sure these have been completed correctly.  
