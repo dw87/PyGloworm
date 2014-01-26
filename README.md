@@ -18,8 +18,8 @@ It uses Ben Lebherz's PyGlow Python module (https://github.com/benleb/PyGlow) to
 
 ## Requirements
 
-   sudo apt-get install python-smbus
-   sudo apt-get install lighttpd
+    sudo apt-get install python-smbus
+    sudo apt-get install lighttpd
 
 ## Setup Instructions
 
