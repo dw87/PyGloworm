@@ -117,18 +117,18 @@ You will need to edit the Lighttpd config file to enable CGI and allow it to rec
 Edit the server.modules section to include or uncomment "mod_cgi": 
 
     server.modules = (
-	"mod_access",
-	"mod_alias",
-	"mod_compress",
-	"mod_redirect",
-	"mod_cgi",
-	#"mod_rewrite",
+    	"mod_access",
+    	"mod_alias",
+    	"mod_compress",
+    	"mod_redirect",
+    	"mod_cgi",
+    	#"mod_rewrite",
     )
 
 At the end of the file, add this section so Lighttpd will recognize Python scripts in the 'www' directory.  
 
     $HTTP["url"] =~ "^/" {
-	cgi.assign = (".py" => "/usr/bin/python")
+    	cgi.assign = (".py" => "/usr/bin/python")
     }
 
 Finally alter the permissions of the www directory (by default /var/www).
@@ -180,8 +180,8 @@ I have added this code to the top of my page:
 
     <?php
     	$ch = curl_init("http://your-raspberry-pi.com/pygloworm.py");
-	curl_exec($ch);
-	curl_close($ch);
+    	curl_exec($ch);
+    	curl_close($ch);
     ?>
 
 It does not create any output so the page will load and display correctly.  
