@@ -184,7 +184,7 @@ I have added this code to the top of my page:
     	curl_close($ch);
     ?>
 
-It does not create any output so the page will load and display correctly.  
+It does not create any output so your original page will load and display correctly.  
 
 ## Help
 
