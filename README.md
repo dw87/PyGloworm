@@ -180,11 +180,21 @@ I have added this code to the top of my page:
 
     <?php
     	$ch = curl_init("http://your-raspberry-pi.com/pygloworm.py");
+    	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 1000); //Added timeout options
+    	curl_setopt($ch, CURLOPT_TIMEOUT_MS, 1000);
     	curl_exec($ch);
     	curl_close($ch);
     ?>
 
 It does not create any output so your original page will load and display correctly.  
+
+I have experienced issues when browsing to the page when the Raspberry Pi is offline, so there is no web server 
+for the cURL function to connect to.  I think it was waiting for the cURL execution to timeout before loading the rest of 
+the page to display, which is not good for user experience.  This should have little to no impact to users visiting my website.  
+I have set a connection timeout and execution timeout of 1000ms (1s) to the cURL call.  I experimented with less, but that 
+stopped it from functioning, and I believe the minimum allowed is 1 second.  
+
+This is probably not the best way to solve this.  If there is a more appropriate way, please contribute it to the project.  
 
 ## Help
 
