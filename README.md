@@ -15,7 +15,9 @@ It uses Ben Lebherz's PyGlow Python module (https://github.com/benleb/PyGlow) to
  - pygloworm_debug.py - Debug code that displays the random generated bits used to configure the LEDs
 			and a simple HTML page to confirm script has run. Works locally on command line
 			and remotely when served by a Raspberry Pi webserver.  
+
 ### Extra Examples
+
  - pygloworm_pulsedsingle.py - Pulses a single LED to maximum brightness and back to off.
  - pygloworm_pulsedcolour.py - Pulses a single colour group of LEDs to maximum brightness and back to off.
  - pygloworm_pulsedgroup.py - Pulses a configurable group of LEDs to maximum brightness and back to off.
